@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { moneyFormat } from '~/helpers';
 
 function Harp({ harp }) {
 
@@ -18,7 +19,7 @@ function Harp({ harp }) {
                 <h3>{name}</h3>
                 <h4>{title}</h4>
                 <p className='description'>{content}</p>
-                <p className='price'>${price}</p>
+                <p className='price'>{moneyFormat(price)}</p>
 
                 <Link className='link' to={`/harps/${url}`}>View product</Link>
             </div>
