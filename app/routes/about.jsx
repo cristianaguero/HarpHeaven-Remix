@@ -3,9 +3,11 @@ import styles from '~/styles/about.css'
 
 export function meta() {
     return [{
-        title: 'Harp Heaven - About us',
-        description: 'About page description',
-        keywords: 'about, page, description',
+        charset: "utf-8",
+        title: "Harp Heaven - About us",
+        viewport: "width=device-width, initial-scale=1.0",
+        description: "Harp Heaven - a harmonica hub with seamless navigation, offering a curated selection of harmonicas for purchase, engaging blogs for enthusiasts, and comprehensive courses for skill development.",
+        keywords: "harmonica, harmonicas, harp, harps, harmonica hub, harmonica store, harmonica shop, harmonica blogs, harmonica courses, harmonica lessons, harmonica learning, harmonica education, harmonica development, harmonica skill development, harmonica skill, harmonica skills, harmonica skill development, harmonica skill development, harmonica"
     }]
 }
 
