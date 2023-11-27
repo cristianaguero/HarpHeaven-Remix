@@ -1,10 +1,11 @@
 import { Link } from '@remix-run/react';
+import { dateFormat } from '~/helpers';
 
 function Post({ post }) {
 
     const { title, content, url, image, publishedAt } = post;
 
-    const imageSrc = image.data.attributes.formats.small.url;
+    const imageSrc = image.data.attributes.url;
 
     return (
         <article className='post'>
@@ -12,7 +13,7 @@ function Post({ post }) {
 
             <div className="content">
                 <h3>{title}</h3>
-                <p className='date'>{publishedAt}</p>
+                <p className='date'>{dateFormat(publishedAt)}</p>
                 <p className='resume'>{content}</p>
                 
                 <Link className='link' to={`/posts/${url}`}>Read more</Link>

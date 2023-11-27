@@ -1,9 +1,16 @@
 import { useLoaderData } from "@remix-run/react";
 import { getPosts } from "~/controllers/posts.server"
 import Post from "~/components/Post";
+import styles from '~/styles/blog.css'
 
-
-
+export function links() {
+    return [
+        {
+            rel: "stylesheet",
+            href: styles
+        }
+    ]
+}
 
 export function meta() {
     return [{

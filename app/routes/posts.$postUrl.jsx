@@ -1,7 +1,7 @@
 import { useLoaderData } from "@remix-run/react"
-import { getHarp } from "~/controllers/harps.server"
-import { moneyFormat } from "~/helpers"
-import styles from '~/styles/harps.css'
+import { getPost } from "~/controllers/posts.server"
+import { dateFormat } from "~/helpers"
+import styles from '~/styles/blog.css'
 
 export function links() {
     return [
@@ -13,51 +13,53 @@ export function links() {
 }
 
 export async function loader({ params }) {
-    const { harpUrl } = params
-    const harp = await getHarp(harpUrl)
+    const { postUrl } = params
+    const post = await getPost(postUrl)
 
-    return harp.data[0].attributes
+    return post.data[0].attributes
 }
 
 export function meta({ data }) {
 
-    if(!data) {
+    if (!data) {
         return [{
             charset: "utf-8",
-            title: `Harp Heaven - Harp Not Found`,
+            title: `Harp Heaven - Post Not Found`,
             viewport: "width=device-width, initial-scale=1.0",
-            description: `Harp Heaven - description for the harmonica ${data.name}`,
+            description: `Harp Heaven - description for the post ${data.title}`,
             keywords: "harmonica, harmonicas, harp, harps, harmonica hub, harmonica store, harmonica shop, harmonica blogs, harmonica courses, harmonica lessons, harmonica learning, harmonica education, harmonica development, harmonica skill development, harmonica skill, harmonica skills, harmonica skill development, harmonica skill development, harmonica"
         }]
     }
 
     return [{
         charset: "utf-8",
-        title: `Harp Heaven - ${data.name}`,
+        title: `Harp Heaven - ${data.title}`,
         viewport: "width=device-width, initial-scale=1.0",
-        description: `Harp Heaven - description for the harmonica ${data.name}`,
+        description: `Harp Heaven - description for the post ${data.title}`,
         keywords: "harmonica, harmonicas, harp, harps, harmonica hub, harmonica store, harmonica shop, harmonica blogs, harmonica courses, harmonica lessons, harmonica learning, harmonica education, harmonica development, harmonica skill development, harmonica skill, harmonica skills, harmonica skill development, harmonica skill development, harmonica"
     }];
 }
 
-function HarpUrl() {
+function PostUrl() {
 
-    const harp = useLoaderData()
+    const post = useLoaderData()
 
-    const { name, price, image, description } = harp;
+    const { title, content, publishedAt, image } = post;
 
     const imageSrc = image.data.attributes.formats.medium.url;
 
     return (
-        <main className="container harp">
-            <img className="image" src={imageSrc} alt={`harmonica ${name} image`} />
+        <article className="container post">
+            <img src={imageSrc} alt={`image of post title: ${title}`} />
+
             <div className="content">
-                <h3>{name}</h3>
-                <p>{description}</p>
-                <p className='price'>{moneyFormat(price)}</p>
+                <h3>{title}</h3>
+                <p className='date'>{dateFormat(publishedAt)}</p>
+                <p className="text">{content}</p>
+
             </div>
-        </main>
+        </article>
     )
 }
 
-export default HarpUrl
+export default PostUrl
