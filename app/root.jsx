@@ -3,7 +3,10 @@ import {
     Links,
     Outlet,
     Scripts,
-    LiveReload
+    LiveReload,
+    isRouteErrorResponse,
+    useRouteError,
+    Link
 } from '@remix-run/react'
 
 import favicon from '../public/img/favicon.ico'
@@ -76,4 +79,34 @@ function Document({ children }) {
             </body>
         </html>
     )
+}
+
+export function ErrorBoundary() {
+    const error = useRouteError()
+
+    if (isRouteErrorResponse(error)) {
+        return (
+            <Document>
+                <h1>ERROR</h1>
+                <p className='error'>{error.status}{error.statusText}</p>
+                <Link className='error-link' to="/">Go Home</Link>
+            </Document>
+        )
+    } else if (error instanceof Error) {
+        return (
+            <Document>
+                <h1>ERROR</h1>
+                <p className='error'>{error.message}</p>
+                <Link className='error-link' to="/">Go Home</Link>
+            </Document>
+        )
+    } else {
+        return (
+            <Document>
+                <h1>ERROR</h1>
+                <p className='error'>Unknown error</p>
+                <Link className='error-link' to="/">Go Home</Link>
+            </Document>
+        )
+    }
 }
