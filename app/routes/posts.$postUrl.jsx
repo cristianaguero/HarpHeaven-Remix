@@ -15,8 +15,15 @@ export function links() {
 export async function loader({ params }) {
     const { postUrl } = params
     const post = await getPost(postUrl)
+    if (post.data.length === 0) {
+        throw new Response("Post not found",
+            {
+                status: 404,
+                statusText: "Post not found"
+            })
+    }
 
-    return post.data[0].attributes
+    return post?.data[0]?.attributes
 }
 
 export function meta({ data }) {

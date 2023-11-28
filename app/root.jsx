@@ -88,7 +88,7 @@ export function ErrorBoundary() {
         return (
             <Document>
                 <h1>ERROR</h1>
-                <p className='error'>{error.status}{error.statusText}</p>
+                <p className='error'>{error.status} {error.statusText}</p>
                 <Link className='error-link' to="/">Go Home</Link>
             </Document>
         )
@@ -96,7 +96,8 @@ export function ErrorBoundary() {
         return (
             <Document>
                 <h1>ERROR</h1>
-                <p className='error'>{error.message}</p>
+                {console.log(error)}
+                <p className='error'>There seems to be a problem. Please, try again later.</p>
                 <Link className='error-link' to="/">Go Home</Link>
             </Document>
         )

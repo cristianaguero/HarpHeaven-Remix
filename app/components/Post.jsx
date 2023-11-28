@@ -5,7 +5,7 @@ function Post({ post }) {
 
     const { title, content, url, image, publishedAt } = post;
 
-    const imageSrc = image.data.attributes.url;
+    const imageSrc = image?.data?.attributes?.url;
 
     return (
         <article className='post'>

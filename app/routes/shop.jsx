@@ -1,7 +1,7 @@
 import { useLoaderData } from "@remix-run/react";
 import { getHarps } from "~/controllers/harps.server"
-import Harp from "~/components/Harp";
 import styles from '~/styles/harps.css'
+import HarpsList from "../components/HarpsList";
 
 export function links() {
     return [
@@ -33,16 +33,7 @@ function Shop() {
 
     return (
         <main className="container">
-            <h2 className="heading">Our collection</h2>
-
-            {harps.length && (
-                <div className="harps-grid">
-                    {harps.map(harp => (
-                        <Harp key={harp.id} harp={harp.attributes} />
-                    )
-                    )}
-                </div>
-            )}
+            <HarpsList harps={harps} />
         </main>
     )
 }

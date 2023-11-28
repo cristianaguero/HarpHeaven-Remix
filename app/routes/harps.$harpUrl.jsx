@@ -16,6 +16,14 @@ export async function loader({ params }) {
     const { harpUrl } = params
     const harp = await getHarp(harpUrl)
 
+    if (harp.data.length === 0) {
+        throw new Response("Harp not found",
+            {
+                status: 404,
+                statusText: "Harp not found"
+            })
+    }
+
     return harp.data[0].attributes
 }
 
