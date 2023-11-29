@@ -1,5 +1,7 @@
+import { useState } from "react"
 import { useLoaderData } from "@remix-run/react"
 import { getHarp } from "~/controllers/harps.server"
+import { useOutletContext } from "@remix-run/react"
 import { moneyFormat } from "~/helpers"
 import styles from '~/styles/harps.css'
 
@@ -24,7 +26,7 @@ export async function loader({ params }) {
             })
     }
 
-    return harp.data[0].attributes
+    return harp.data[0]
 }
 
 export function meta({ data }) {
@@ -51,10 +53,31 @@ export function meta({ data }) {
 function HarpUrl() {
 
     const harp = useLoaderData()
-
-    const { name, price, image, description } = harp;
-
+    const { id } = harp;
+    const { name, price, image, description } = harp.attributes;
     const imageSrc = image.data.attributes.formats.medium.url;
+
+    const { addToCart } = useOutletContext()
+
+    const [quantity, setQuantity] = useState(0)
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        
+        if(quantity === 0) {
+            return
+        }
+
+        const harpSelected = {
+            id,
+            name,
+            price,
+            quantity,
+            imageSrc
+        }
+
+        addToCart(harpSelected)
+    }
 
     return (
         <main className="container harp">
@@ -63,6 +86,27 @@ function HarpUrl() {
                 <h3>{name}</h3>
                 <p>{description}</p>
                 <p className='price'>{moneyFormat(price)}</p>
+
+                <form 
+                className="form"
+                onSubmit={handleSubmit}>
+                    <label htmlFor="quantity">Quantity</label>
+
+                    <select 
+                    id="quantity"
+                    onChange={e => setQuantity(parseInt(e.target.value))}>
+                        <option value="0">-- Select --</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                    </select>
+                    
+                    <input type="submit"
+                    value='Add to cart' />
+
+                </form>
             </div>
         </main>
     )
