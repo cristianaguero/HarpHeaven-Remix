@@ -3,10 +3,10 @@ import Post from "~/components/Post";
 function PostsList({ posts }) {
     return (
         <>
-                        <h2 className="heading">Blog</h2>
+            <h2 className="heading">Blog</h2>
             <div className="blog">
                 {posts.map(post => (
-                    <Post key={post.id} post={post.attributes} />   
+                    <Post key={post.id} post={post.attributes} />
                 ))}
 
             </div>

@@ -60,20 +60,31 @@ export default function App() {
 
     const [cart, setCart] = useState([]);
 
-    const addToCart = (harp) => {
-        if (cart.some(harpInCart => harpInCart.id === harp.id)) {
+    const addToCart = (harp) => {   
+        if (cart.some(harpInState => harpInState.id === harp.id)) {
 
-            const updatedCart = cart.map(harpInCart => {
-                if (harpInCart.id === harp.id) {
-                    harpInCart.quantity = harp.quantity
+            const updatedCart = cart.map(harpInState => {
+                if (harpInState.id === harp.id) {
+                    harpInState.quantity = harp.quantity
 
-                    return harpInCart
+                    return harpInState
                 }
             })
             setCart(updatedCart)
         } else {
-            setCart([...cart, harp]);
+            setCart([...cart, harp])
         }
+    }
+
+    const updateQuantity = (harp) => {
+        const updatedCart = cart.map(harpInState => {
+            if (harpInState.id === harp.id) {
+                harpInState.quantity = harp.quantity
+
+                return harpInState
+            }
+        })
+        setCart(updatedCart)
     }
 
     return (
@@ -81,6 +92,7 @@ export default function App() {
             <Outlet
                 context={{
                     addToCart,
+                    updateQuantity,
                     cart
                 }} />
         </Document>

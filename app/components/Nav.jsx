@@ -25,7 +25,7 @@ function Nav() {
 
             <Link to="/cart"
             >
-                <img src={image} alt="shopping cart" />
+                <img src={image} alt="shopping cart" className={location.pathname === '/cart' ? 'active' : ''} />
             </Link>
         </nav>
     )

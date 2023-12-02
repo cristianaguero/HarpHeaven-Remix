@@ -7,7 +7,7 @@ function Course({ course }) {
     const imageSrc = image?.data?.attributes?.url;
 
     return (
-        <section className="course">
+        <>
             <style jsx='true'>{`
                 .course {
                     background-image: linear-gradient(to right, rgb(0 0 0 / .65), rgb(0 0 0 / .7)), url(${imageSrc});
@@ -23,7 +23,7 @@ function Course({ course }) {
                     <p className="text">{content}</p>
                 </div>
             </div>
-        </section>
+        </>
     )
 }
 

@@ -7,10 +7,13 @@ import { useLoaderData } from '@remix-run/react';
 import HarpsList from '../components/HarpsList';
 import PostsList from '../components/PostsList';
 import Course from '../components/Course';
+import Hero from '~/components/Hero';
 
 import styleHarps from '~/styles/harps.css';
 import styleBlog from '~/styles/blog.css';
 import styleCourse from '~/styles/course.css';
+import styleHero from '~/styles/hero.css';
+
 
 export function meta() {
     return [{
@@ -35,6 +38,10 @@ export function links() {
         {
             rel: "stylesheet",
             href: styleCourse
+        },
+        {
+            rel: "stylesheet",
+            href: styleHero
         }
     ]
 }
@@ -59,10 +66,18 @@ function Index() {
 
     return (
         <div className="home">
-            <main className="container">
+
+            <header className='hero'>
+                <Hero />
+            </header>
+
+            <main className="container center">
                 <PostsList posts={posts} />
             </main>
+            <section className='course'>
                 <Course course={course.attributes} />
+            </section>
+
             <section className="container">
                 <HarpsList harps={harps} />
             </section>

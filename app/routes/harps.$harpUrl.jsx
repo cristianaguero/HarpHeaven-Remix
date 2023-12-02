@@ -31,7 +31,7 @@ export async function loader({ params }) {
 
 export function meta({ data }) {
 
-    if(!data) {
+    if (!data) {
         return [{
             charset: "utf-8",
             title: `Harp Heaven - Harp Not Found`,
@@ -43,7 +43,7 @@ export function meta({ data }) {
 
     return [{
         charset: "utf-8",
-        title: `Harp Heaven - ${data.name}`,
+        title: `Harp Heaven - ${data.attributes.name}`,
         viewport: "width=device-width, initial-scale=1.0",
         description: `Harp Heaven - description for the harmonica ${data.name}`,
         keywords: "harmonica, harmonicas, harp, harps, harmonica hub, harmonica store, harmonica shop, harmonica blogs, harmonica courses, harmonica lessons, harmonica learning, harmonica education, harmonica development, harmonica skill development, harmonica skill, harmonica skills, harmonica skill development, harmonica skill development, harmonica"
@@ -63,8 +63,8 @@ function HarpUrl() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        
-        if(quantity === 0) {
+
+        if (quantity === 0) {
             return
         }
 
@@ -87,14 +87,14 @@ function HarpUrl() {
                 <p>{description}</p>
                 <p className='price'>{moneyFormat(price)}</p>
 
-                <form 
-                className="form"
-                onSubmit={handleSubmit}>
+                <form
+                    className="form"
+                    onSubmit={handleSubmit}>
                     <label htmlFor="quantity">Quantity</label>
 
-                    <select 
-                    id="quantity"
-                    onChange={e => setQuantity(parseInt(e.target.value))}>
+                    <select
+                        id="quantity"
+                        onChange={e => setQuantity(parseInt(e.target.value))}>
                         <option value="0">-- Select --</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -102,9 +102,9 @@ function HarpUrl() {
                         <option value="4">4</option>
                         <option value="5">5</option>
                     </select>
-                    
+
                     <input type="submit"
-                    value='Add to cart' />
+                        value='Add to cart' />
 
                 </form>
             </div>

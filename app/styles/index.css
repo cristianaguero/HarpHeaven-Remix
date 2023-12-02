@@ -99,7 +99,11 @@ main {
 }
 
 .header .navegation img {
-    width: 3rem;
+    width: 5rem;
+    padding: 1rem;
+    transition-property: background-color;
+    transition-duration: .3s;
+    border-radius: 1rem;
 }
 
 /** foother */

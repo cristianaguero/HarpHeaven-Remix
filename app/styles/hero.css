@@ -1,0 +1,21 @@
+.hero {
+    padding: 5rem 0;
+    margin-top: 1rem;
+}
+
+.hero .heading {
+    font-size: 10rem;
+}
+
+.hero .slogan {
+    text-align: center;
+    font-size: 3rem;
+    color: var(--white);
+    white-space: pre-wrap;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
